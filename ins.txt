@@ -1,0 +1,141 @@
+git remote add origin https://github.com/LaghPaul/Clase26-09-2019-Act1-.git
+
+1. Creamos proyecto java normal
+nombre: TestJUnit001
+
+2. Crar un package 
+nombre: modelo
+
+3. Crear una clase en modelo
+nombre: Calculadora
+crear 2 variables enteras (num1 y num2)
+crear los constructores (2) y 4 métodos (públicos)
+
+TEST UNITARIOS
+
+4. (test unitario)en la clase click derecho, ir a tools, luego a Create/Update Tests
+luego botón derecho -> run file
+
+(En caso de no incorporar la librería agregar junit-4.0.jar)
+
+5. Arreglar los tests
+hay q ocupar el constructor con parámetros
+
+ @org.junit.Test
+    public void testSumar() {
+        System.out.println("Sumar");
+        Calculadora instance = new Calculadora(8,2);
+        int expResult = 10;
+        int result = instance.Sumar();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of Restar method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testRestar() {
+        System.out.println("Restar");
+        Calculadora instance = new Calculadora(8,2);
+        int expResult = 6;
+        int result = instance.Restar();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of Multiplicar method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testMultiplicar() {
+        System.out.println("Multiplicar");
+        Calculadora instance = new Calculadora(8,2);
+        int expResult = 16;
+        int result = instance.Multiplicar();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of Dividir method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testDividir() {
+        System.out.println("Dividir");
+        Calculadora instance = new Calculadora(8,2);
+        int expResult = 4;
+        int result = instance.Dividir();
+        assertEquals(expResult, result);
+    }
+
+
+objetos -> equals
+string -> equals ignore case
+
+6. otra manera en el punto 5
+
+@org.junit.Test
+    public void testSumar() {
+        System.out.println("Sumar");
+        Calculadora instance = new Calculadora(8,2);
+        assertTrue(instance.Sumar()==10);
+    }
+
+    /**
+     * Test of Restar method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testRestar() {
+        System.out.println("Restar");
+        Calculadora instance = new Calculadora(8,2);
+        assertTrue(instance.Restar()==6);
+    }
+
+    /**
+     * Test of Multiplicar method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testMultiplicar() {
+        System.out.println("Multiplicar");
+        Calculadora instance = new Calculadora(8,2);
+        assertTrue(instance.Multiplicar()==16);
+    }
+
+    /**
+     * Test of Dividir method, of class Calculadora.
+     */
+    @org.junit.Test
+    public void testDividir() {
+        System.out.println("Dividir");
+        Calculadora instance = new Calculadora(8,2);
+         assertTrue(instance.Dividir()==4);
+    }
+
+7. Por separado
+(por cada clase, sólo sumar se incluye aquí)
+
+package modelo;
+import static org.junit.Assert.assertTrue;
+public class TestSumar {
+    public TestSumar() {
+    } 
+     @org.junit.Test
+    public void testSumar() {
+        System.out.println("Sumar");
+        Calculadora instance = new Calculadora(8,2);
+        assertTrue(instance.Sumar()==10);
+    }
+}
+
+8. Juntar todas clases de test en uno sólo (se deben crear las 3 clases faltantes del punto 7: TestRestar, Test;ultiplicar y TestDividir)
+
+package modelo;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+@RunWith(Suite.class)
+@SuiteClasses({
+    TestSumar.class, TestRestar.class, TestMultiplicar.class, TestDividir.class
+})
+public class AllTest {
+}
+
+
